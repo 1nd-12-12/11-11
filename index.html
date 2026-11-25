@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Last 11:11 | A Memory</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+ background:#050505;
+ color:#eee;
+ font-family:Montserrat,sans-serif;
+ overflow-x:hidden;
+}
+
+#stars{
+ position:fixed;inset:0;pointer-events:none;
+ background-image:
+ radial-gradient(1px 1px at 20% 30%,#fff,transparent),
+ radial-gradient(1px 1px at 70% 60%,#aaa,transparent),
+ radial-gradient(2px 2px at 40% 80%,#fff,transparent);
+ background-size:180px 180px;
+ opacity:.35;z-index:0;
+ animation:stars 15s linear infinite;
+}
+@keyframes stars{to{transform:translateY(-180px)}}
+
+section{
+ min-height:100vh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ padding:35px 22px;
+ position:relative;
+ z-index:1;
+}
+
+.small{
+ letter-spacing:6px;
+ font-size:10px;
+ color:#a78b8b;
+ text-transform:uppercase;
+}
+
+.time{
+ font-family:'Cormorant Garamond',serif;
+ font-size:clamp(90px,20vw,170px);
+ color:#e5caca;
+ text-shadow:0 0 35px #8d2525;
+ margin:15px 0;
+ animation:glow 3s infinite alternate;
+}
+@keyframes glow{
+ from{text-shadow:0 0 15px #5b1111}
+ to{text-shadow:0 0 55px #b52c36}
+}
+
+h1{
+ font-family:'Cormorant Garamond',serif;
+ font-size:clamp(40px,9vw,75px);
+ font-weight:400;
+}
+
+p{
+ font-size:13px;
+ line-height:2;
+ color:#aaa;
+ max-width:520px;
+ margin:18px auto;
+}
+
+button{
+ background:transparent;
+ color:#e9caca;
+ border:1px solid #713b3b;
+ padding:14px 27px;
+ margin-top:25px;
+ letter-spacing:3px;
+ font-size:10px;
+ cursor:pointer;
+ transition:.4s;
+}
+button:hover{
+ background:#762626;
+ color:white;
+ box-shadow:0 0 25px #681d1d;
+}
+
+.heart{
+ font-size:65px;
+ filter:drop-shadow(0 0 20px #9e2525);
+ animation:beat 2s infinite;
+}
+@keyframes beat{
+ 50%{transform:scale(1.15)}
+}
+
+.divider{
+ width:45px;height:1px;
+ background:#803a3a;
+ margin:25px auto;
+}
+
+.hidden{display:none!important}
+
+.memory{
+ font-family:'Cormorant Garamond',serif;
+ font-size:clamp(24px,5vw,37px);
+ font-style:italic;
+ color:#e5d4d4;
+ min-height:100px;
+}
+
+.fade{
+ animation:fade 2s ease forwards;
+}
+@keyframes fade{
+ from{opacity:0;transform:translateY(20px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.letter{
+ border:1px solid #392323;
+ padding:28px 22px;
+ max-width:520px;
+ background:linear-gradient(145deg,#110909,#080808);
+ box-shadow:0 0 45px #200b0b;
+}
+
+footer{
+ color:#555;
+ font-size:9px;
+ letter-spacing:3px;
+ padding:30px;
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+
+<section id="home">
+ <div class="small">A date • A time • A memory</div>
+ <div class="time">11:11</div>
+ <div class="divider"></div>
+ <h1>The Last 11:11</h1>
+ <p>Some moments become memories before we are ready to let them go.</p>
+ <button onclick="show('date')">ENTER THE MEMORY ↗</button>
+</section>
+
+<section id="date" class="hidden">
+ <div class="small">THE NIGHT THAT STAYED</div>
+ <h1 style="margin-top:25px">11 / 11</h1>
+ <div class="time" style="font-size:85px">11:11</div>
+ <div class="divider"></div>
+ <p>
+ That date. That time.<br>
+ Maybe it was just another moment for the world.<br>
+ But for me, it became something I'll never explain.
+ </p>
+ <button onclick="show('story')">TURN THE PAGE</button>
+</section>
+
+<section id="story" class="hidden">
+ <div class="small">CHAPTER ONE</div>
+ <h1>Once Upon A Time</h1>
+ <div class="divider"></div>
+ <div class="memory" id="storyText">There was a moment I wished would never end...</div>
+ <button onclick="nextStory()">NEXT MEMORY →</button>
+</section>
+
+<section id="letter" class="hidden">
+ <div class="small">AN UNSENT LETTER</div>
+ <h1 style="margin:20px">Dear You,</h1>
+ <div class="letter">
+  <p style="color:#d9c4c4">
+   I don't know if you'll ever read this.<br><br>
+   There are things I wanted to say, memories I wanted to keep,
+   and moments I wanted to live again.<br><br>
+   Maybe things didn't happen the way I imagined.
+   Maybe some stories are beautiful even when they don't last.<br><br>
+   I won't pretend that it never mattered.
+   It did. More than words could explain.<br><br>
+   Thank you for being a chapter of my life.
+  </p>
+  <div class="small">A LETTER THAT NEEDS NO REPLY</div>
+ </div>
+ <button onclick="show('last')">ONE LAST PAGE</button>
+</section>
+
+<section id="last" class="hidden">
+ <div class="small">11:11 — FOREVER IN MEMORY</div>
+ <div class="heart">♡</div>
+ <h1 style="margin-top:25px">The End?</h1>
+ <div class="divider"></div>
+ <p>
+ I didn't forget 11:11.<br>
+ I didn't erase what happened.<br>
+ I just learned that life doesn't stop at one memory.
+ </p>
+ <div class="memory" style="margin-top:30px">
+  Some people become memories.<br>
+  Some moments become forever.
+ </div>
+ <p style="margin-top:35px;color:#b38b8b">
+ THE BOY WHO FELT EVERYTHING.
+ </p>
+ <button onclick="location.reload()">REVISIT 11:11 ↺</button>
+ <footer>MADE OF MEMORIES · 11/11</footer>
+</section>
+
+<script>
+const pages=['home','date','story','letter','last'];
+
+function show(id){
+ pages.forEach(p=>{
+  document.getElementById(p).classList.add('hidden');
+ });
+ const page=document.getElementById(id);
+ page.classList.remove('hidden');
+ page.classList.add('fade');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const memories=[
+ "There was a moment I wished would never end...",
+ "I had a thousand dreams hidden behind one smile.",
+ "Some conversations became my favourite memories.",
+ "I never knew a date could carry so many feelings.",
+ "And suddenly, everything became a memory.",
+ "Maybe forever was never promised. But the feelings were real."
+];
+
+let index=0;
+
+function nextStory(){
+ const text=document.getElementById('storyText');
+ index++;
+ if(index>=memories.length){
+  show('letter');
+  return;
+ }
+ text.classList.remove('fade');
+ void text.offsetWidth;
+ text.innerText=memories[index];
+ text.classList.add('fade');
+}
+</script>
+</body>
+</html>
