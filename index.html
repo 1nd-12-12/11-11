@@ -4,254 +4,779 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Last 11:11 | A Memory</title>
+<meta name="theme-color" content="#080607">
+<title>11:11 — For Riya</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&display=swap');
+
+:root{
+ --bg:#080607;
+ --gold:#c9a66b;
+ --light:#f0dfc9;
+ --muted:#98817b;
+ --red:#8e2636;
+}
 
 *{margin:0;padding:0;box-sizing:border-box}
 
+html{scroll-behavior:smooth}
+
 body{
- background:#050505;
- color:#eee;
+ background:var(--bg);
+ color:var(--light);
  font-family:Montserrat,sans-serif;
  overflow-x:hidden;
-}
-
-#stars{
- position:fixed;inset:0;pointer-events:none;
- background-image:
- radial-gradient(1px 1px at 20% 30%,#fff,transparent),
- radial-gradient(1px 1px at 70% 60%,#aaa,transparent),
- radial-gradient(2px 2px at 40% 80%,#fff,transparent);
- background-size:180px 180px;
- opacity:.35;z-index:0;
- animation:stars 15s linear infinite;
-}
-@keyframes stars{to{transform:translateY(-180px)}}
-
-section{
  min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- text-align:center;
- padding:35px 22px;
+}
+
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ z-index:10;
+ opacity:.12;
+ background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+}
+
+#particles{
+ position:fixed;
+ inset:0;
+ width:100%;
+ height:100%;
+ pointer-events:none;
+ z-index:0;
+}
+
+.page{
  position:relative;
  z-index:1;
+ min-height:100vh;
+ display:none;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ text-align:center;
+ padding:65px 22px;
+ animation:appear 1s ease;
 }
 
-.small{
- letter-spacing:6px;
- font-size:10px;
- color:#a78b8b;
- text-transform:uppercase;
-}
+.page.active{display:flex}
 
-.time{
- font-family:'Cormorant Garamond',serif;
- font-size:clamp(90px,20vw,170px);
- color:#e5caca;
- text-shadow:0 0 35px #8d2525;
- margin:15px 0;
- animation:glow 3s infinite alternate;
-}
-@keyframes glow{
- from{text-shadow:0 0 15px #5b1111}
- to{text-shadow:0 0 55px #b52c36}
-}
-
-h1{
- font-family:'Cormorant Garamond',serif;
- font-size:clamp(40px,9vw,75px);
- font-weight:400;
-}
-
-p{
- font-size:13px;
- line-height:2;
- color:#aaa;
- max-width:520px;
- margin:18px auto;
-}
-
-button{
- background:transparent;
- color:#e9caca;
- border:1px solid #713b3b;
- padding:14px 27px;
- margin-top:25px;
- letter-spacing:3px;
- font-size:10px;
- cursor:pointer;
- transition:.4s;
-}
-button:hover{
- background:#762626;
- color:white;
- box-shadow:0 0 25px #681d1d;
-}
-
-.heart{
- font-size:65px;
- filter:drop-shadow(0 0 20px #9e2525);
- animation:beat 2s infinite;
-}
-@keyframes beat{
- 50%{transform:scale(1.15)}
-}
-
-.divider{
- width:45px;height:1px;
- background:#803a3a;
- margin:25px auto;
-}
-
-.hidden{display:none!important}
-
-.memory{
- font-family:'Cormorant Garamond',serif;
- font-size:clamp(24px,5vw,37px);
- font-style:italic;
- color:#e5d4d4;
- min-height:100px;
-}
-
-.fade{
- animation:fade 2s ease forwards;
-}
-@keyframes fade{
- from{opacity:0;transform:translateY(20px)}
+@keyframes appear{
+ from{opacity:0;transform:translateY(22px)}
  to{opacity:1;transform:translateY(0)}
 }
 
-.letter{
- border:1px solid #392323;
- padding:28px 22px;
- max-width:520px;
- background:linear-gradient(145deg,#110909,#080808);
- box-shadow:0 0 45px #200b0b;
+.eyebrow{
+ color:var(--gold);
+ font-size:9px;
+ letter-spacing:5px;
+ text-transform:uppercase;
+ margin-bottom:25px;
 }
 
-footer{
- color:#555;
+h1,h2,.serif{
+ font-family:'Cormorant Garamond',serif;
+ font-weight:400;
+}
+
+h1{
+ font-size:clamp(48px,11vw,100px);
+ line-height:1;
+}
+
+h2{
+ font-size:clamp(38px,8vw,66px);
+ line-height:1.1;
+}
+
+.gold{color:var(--gold)}
+
+.subtitle{
+ max-width:490px;
+ color:var(--muted);
+ font-size:12px;
+ line-height:2.2;
+ margin:25px auto;
+}
+
+.line{
+ width:55px;
+ height:1px;
+ background:var(--gold);
+ opacity:.65;
+ margin:28px auto;
+}
+
+button{
+ font-family:Montserrat,sans-serif;
+ background:transparent;
+ border:1px solid #795c43;
+ color:var(--gold);
+ padding:15px 27px;
+ letter-spacing:3px;
+ font-size:9px;
+ cursor:pointer;
+ transition:.4s;
+ text-transform:uppercase;
+ margin-top:12px;
+}
+
+button:hover{
+ background:var(--gold);
+ color:#100b09;
+ box-shadow:0 0 30px #b48a513d;
+}
+
+button:active{transform:scale(.97)}
+
+textarea{
+ width:100%;
+ background:#110d0e;
+ border:1px solid #49302b;
+ padding:16px;
+ color:var(--light);
+ outline:none;
+ font-family:Montserrat,sans-serif;
+ font-size:12px;
+ margin:10px 0;
+ min-height:125px;
+ resize:vertical;
+ line-height:1.8;
+}
+
+textarea:focus{border-color:var(--gold)}
+
+.small{
+ color:#806d68;
  font-size:9px;
  letter-spacing:3px;
- padding:30px;
+ margin-top:20px;
+}
+
+/* OPENING */
+
+.capsule{
+ width:125px;
+ height:125px;
+ border:1px solid #9b7043;
+ transform:rotate(45deg);
+ display:grid;
+ place-items:center;
+ margin:40px auto;
+ box-shadow:0 0 60px #9b704320;
+ animation:float 4s ease-in-out infinite;
+}
+
+.capsule span{
+ transform:rotate(-45deg);
+ font-family:'Cormorant Garamond',serif;
+ font-size:50px;
+ color:var(--gold);
+}
+
+@keyframes float{
+ 50%{transform:rotate(45deg) translateY(-12px)}
+}
+
+/* CLOCK */
+
+.clock{
+ font-family:'Cormorant Garamond',serif;
+ font-size:clamp(95px,23vw,175px);
+ color:var(--gold);
+ text-shadow:0 0 35px #9e682e60;
+ letter-spacing:-5px;
+}
+
+.clock-ring{
+ border:1px solid #6e4b35;
+ border-radius:50%;
+ width:250px;
+ height:250px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ position:relative;
+ box-shadow:0 0 80px #7b29231c,inset 0 0 40px #7b29231c;
+}
+
+.clock-ring:before{
+ content:"";
+ position:absolute;
+ inset:-12px;
+ border:1px solid #63452d55;
+ border-radius:50%;
+}
+
+/* VAULT */
+
+.vault{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(130px,190px));
+ gap:15px;
+ margin:35px auto;
+ width:100%;
+ max-width:410px;
+}
+
+.memory-card{
+ min-height:145px;
+ border:1px solid #3d2825;
+ background:linear-gradient(145deg,#170e0e,#0b0809);
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:15px;
+ padding:15px;
+ cursor:pointer;
+ transition:.4s;
+}
+
+.memory-card:hover{
+ border-color:var(--gold);
+ transform:translateY(-5px);
+ box-shadow:0 12px 35px #000;
+}
+
+.memory-card .symbol{
+ font-family:'Cormorant Garamond',serif;
+ font-size:38px;
+ color:var(--gold);
+}
+
+.memory-card span:last-child{
+ font-size:9px;
+ letter-spacing:2px;
+ color:#b39b91;
+}
+
+#memoryResult{
+ max-width:450px;
+ min-height:90px;
+ margin:15px auto;
+ font-family:'Cormorant Garamond',serif;
+ font-size:24px;
+ font-style:italic;
+ color:#e1c9a9;
+ line-height:1.6;
+ transition:opacity .3s;
+}
+
+/* LETTER */
+
+.letter-box{
+ max-width:510px;
+ width:100%;
+ border:1px solid #775536;
+ background:linear-gradient(145deg,#180e0e,#0b0808);
+ padding:35px 25px;
+ box-shadow:0 0 70px #6c25221c;
+}
+
+.letter-content{
+ display:none;
+ text-align:left;
+ color:#cbb6a5;
+ font-family:'Cormorant Garamond',serif;
+ font-size:20px;
+ line-height:1.9;
+ margin-top:25px;
+ white-space:pre-line;
+}
+
+.letter-content.open{
+ display:block;
+ animation:appear 1.3s ease;
+}
+
+/* PERSONAL VAULT */
+
+.editor{
+ width:100%;
+ max-width:480px;
+ margin-top:20px;
+ padding:25px;
+ border:1px solid #49302b;
+ background:#100b0c;
+}
+
+/* ENDING */
+
+.heart{
+ font-size:85px;
+ color:#9f3542;
+ text-shadow:0 0 35px #b51c354d;
+ animation:heartbeat 2.2s infinite;
+ margin:30px;
+}
+
+@keyframes heartbeat{
+ 0%,100%{transform:scale(1)}
+ 50%{transform:scale(1.12)}
+}
+
+.footer{
+ position:absolute;
+ bottom:18px;
+ color:#5b4845;
+ font-size:8px;
+ letter-spacing:3px;
+ width:100%;
+ text-align:center;
+}
+
+@media(max-width:400px){
+ .vault{gap:9px}
+ .memory-card{min-height:125px}
+ .clock-ring{width:215px;height:215px}
 }
 </style>
 </head>
 
 <body>
-<div id="stars"></div>
 
-<section id="home">
- <div class="small">A date • A time • A memory</div>
- <div class="time">11:11</div>
- <div class="divider"></div>
- <h1>The Last 11:11</h1>
- <p>Some moments become memories before we are ready to let them go.</p>
- <button onclick="show('date')">ENTER THE MEMORY ↗</button>
-</section>
+<canvas id="particles"></canvas>
 
-<section id="date" class="hidden">
- <div class="small">THE NIGHT THAT STAYED</div>
- <h1 style="margin-top:25px">11 / 11</h1>
- <div class="time" style="font-size:85px">11:11</div>
- <div class="divider"></div>
- <p>
- That date. That time.<br>
- Maybe it was just another moment for the world.<br>
- But for me, it became something I'll never explain.
+<!-- PAGE 1 : OPENING -->
+<section class="page active" id="p1">
+
+ <div class="eyebrow">A PRIVATE MEMORY COLLECTION</div>
+
+ <div class="capsule"><span>11</span></div>
+
+ <h1>THE <span class="gold">11:11</span></h1>
+
+ <h2 style="font-size:39px;letter-spacing:5px;margin-top:12px">
+ FOR RIYA
+ </h2>
+
+ <div class="line"></div>
+
+ <p class="subtitle">
+ Some memories deserve a place beyond time.<br>
+ This one begins with a name.
  </p>
- <button onclick="show('story')">TURN THE PAGE</button>
+
+ <div class="serif gold" style="font-size:35px">
+ RIYA ♡
+ </div>
+
+ <button onclick="go(2)">OPEN MY CAPSULE ↗</button>
+
+ <div class="small">11 NOVEMBER · 11:11</div>
+
+ <div class="footer">A STORY WRITTEN IN SILENCE</div>
+
 </section>
 
-<section id="story" class="hidden">
- <div class="small">CHAPTER ONE</div>
- <h1>Once Upon A Time</h1>
- <div class="divider"></div>
- <div class="memory" id="storyText">There was a moment I wished would never end...</div>
- <button onclick="nextStory()">NEXT MEMORY →</button>
+
+<!-- PAGE 2 : CLOCK -->
+<section class="page" id="p2">
+
+ <div class="eyebrow">CHAPTER 01 · THE MOMENT</div>
+
+ <div class="clock-ring">
+  <div class="clock">11:11</div>
+ </div>
+
+ <h2 style="margin-top:40px">
+ The world kept moving.
+ </h2>
+
+ <p class="subtitle">
+ But somewhere inside me, time stopped at this moment.
+ </p>
+
+ <div class="line"></div>
+
+ <p class="gold serif" style="font-size:28px">
+ Riya, this moment has a name.
+ </p>
+
+ <button onclick="go(3)">ENTER THE MEMORY VAULT</button>
+
 </section>
 
-<section id="letter" class="hidden">
- <div class="small">AN UNSENT LETTER</div>
- <h1 style="margin:20px">Dear You,</h1>
- <div class="letter">
-  <p style="color:#d9c4c4">
-   I don't know if you'll ever read this.<br><br>
-   There are things I wanted to say, memories I wanted to keep,
-   and moments I wanted to live again.<br><br>
-   Maybe things didn't happen the way I imagined.
-   Maybe some stories are beautiful even when they don't last.<br><br>
-   I won't pretend that it never mattered.
-   It did. More than words could explain.<br><br>
-   Thank you for being a chapter of my life.
+
+<!-- PAGE 3 : MEMORY VAULT -->
+<section class="page" id="p3">
+
+ <div class="eyebrow">CHAPTER 02 · MEMORY VAULT</div>
+
+ <h2>Four Little <span class="gold">Memories.</span></h2>
+
+ <p class="subtitle">
+ Touch each memory. Some things are easier to feel than explain.
+ </p>
+
+ <div class="vault">
+
+  <div class="memory-card" onclick="reveal(0)">
+   <span class="symbol">♡</span>
+   <span>THE BEGINNING</span>
+  </div>
+
+  <div class="memory-card" onclick="reveal(1)">
+   <span class="symbol">⌛</span>
+   <span>THE MOMENTS</span>
+  </div>
+
+  <div class="memory-card" onclick="reveal(2)">
+   <span class="symbol">✉</span>
+   <span>THE UNSAID</span>
+  </div>
+
+  <div class="memory-card" onclick="reveal(3)">
+   <span class="symbol">✧</span>
+   <span>THE GOODBYE</span>
+  </div>
+
+ </div>
+
+ <div id="memoryResult">
+  Choose a memory to unlock it...
+ </div>
+
+ <button onclick="go(4)">OPEN THE SEALED LETTER</button>
+
+</section>
+
+
+<!-- PAGE 4 : LETTER -->
+<section class="page" id="p4">
+
+ <div class="eyebrow">CHAPTER 03 · NEVER SENT</div>
+
+ <h2>The <span class="gold">Unsent</span> Letter.</h2>
+
+ <p class="subtitle">
+ There are words that never found their way out.
+ </p>
+
+ <div class="letter-box">
+
+  <div class="gold" style="letter-spacing:5px;font-size:10px">
+   SEALED · 11:11
+  </div>
+
+  <div class="serif" style="font-size:38px;margin-top:20px">
+   Dear <span class="gold">Riya</span>,
+  </div>
+
+  <p class="subtitle" style="margin-bottom:0">
+   A letter that doesn't ask for a reply.
   </p>
-  <div class="small">A LETTER THAT NEEDS NO REPLY</div>
+
+  <button id="openLetter" onclick="unlockLetter()">
+   BREAK THE SEAL ✉
+  </button>
+
+  <div class="letter-content" id="letterContent">
+Dear Riya,
+
+I don't know where to begin.
+
+Maybe I should have said more.
+Maybe I should have held on a little longer.
+
+There are moments I still remember without trying.
+
+I won't say it didn't hurt.
+It did.
+
+And perhaps the hardest part isn't losing someone.
+It's learning what to do with all the feelings that remain.
+
+I hope life is kind to you.
+
+I hope you smile, even on the days I am no longer a part of.
+
+I won't pretend that our story meant nothing.
+
+You were a part of my story.
+And I won't pretend you weren't.
+
+Thank you for the memories, Riya.
+
+— A heart that once wished for forever.
+  </div>
+
  </div>
- <button onclick="show('last')">ONE LAST PAGE</button>
+
+ <button onclick="go(5)">CONTINUE TO THE LAST MEMORY</button>
+
 </section>
 
-<section id="last" class="hidden">
- <div class="small">11:11 — FOREVER IN MEMORY</div>
- <div class="heart">♡</div>
- <h1 style="margin-top:25px">The End?</h1>
- <div class="divider"></div>
- <p>
- I didn't forget 11:11.<br>
- I didn't erase what happened.<br>
- I just learned that life doesn't stop at one memory.
+
+<!-- PAGE 5 : PERSONAL TIME CAPSULE -->
+<section class="page" id="p5">
+
+ <div class="eyebrow">CHAPTER 04 · YOUR PRIVATE VAULT</div>
+
+ <h2>Leave Something <span class="gold">Behind.</span></h2>
+
+ <p class="subtitle">
+ Write what you wish to remember.
+ Your words stay saved in this browser.
  </p>
- <div class="memory" style="margin-top:30px">
-  Some people become memories.<br>
-  Some moments become forever.
+
+ <div class="editor">
+
+  <div class="gold" style="font-size:10px;letter-spacing:4px">
+   YOUR UNSPOKEN WORDS
+  </div>
+
+  <textarea id="myMemory"
+  placeholder="Dear Riya... write something you never got to say."></textarea>
+
+  <button onclick="saveMemory()">SAVE MY WORDS ♡</button>
+
+  <p id="saveStatus" class="small"></p>
+
+  <button onclick="loadMemory()">READ MY SAVED WORDS</button>
+
  </div>
- <p style="margin-top:35px;color:#b38b8b">
+
+ <button onclick="go(6)">THE FINAL CHAPTER →</button>
+
+</section>
+
+
+<!-- PAGE 6 : EMOTIONAL ENDING -->
+<section class="page" id="p6">
+
+ <div class="eyebrow">11:11 · THE FINAL CHAPTER</div>
+
+ <div class="heart">♡</div>
+
+ <h1>Not Forgotten.</h1>
+
+ <h2 class="gold" style="font-size:48px;margin-top:12px">
+ Just Remembered.
+ </h2>
+
+ <div class="line"></div>
+
+ <p class="subtitle" style="font-size:13px">
+ Riya, I will remember the date.<br>
+ I will remember the feeling.<br>
+ I will remember the version of me that believed in forever.
+ </p>
+
+ <p class="serif" style="font-size:27px;color:#d7b98d;margin-top:20px">
+ You were once my favourite chapter.
+ </p>
+
+ <p class="subtitle">
+ But I still have a life to live.
+ </p>
+
+ <div class="line"></div>
+
+ <h2 style="font-size:42px">11 : 11</h2>
+
+ <p class="small">A MOMENT THAT BECAME A MEMORY.</p>
+
+ <p class="gold" style="font-size:10px;letter-spacing:3px;margin-top:35px">
  THE BOY WHO FELT EVERYTHING.
  </p>
- <button onclick="location.reload()">REVISIT 11:11 ↺</button>
- <footer>MADE OF MEMORIES · 11/11</footer>
+
+ <button onclick="go(1)">REVISIT THE CAPSULE ↺</button>
+
+ <div class="footer">END OF THIS CHAPTER · NOT THE STORY</div>
+
 </section>
 
-<script>
-const pages=['home','date','story','letter','last'];
 
-function show(id){
- pages.forEach(p=>{
-  document.getElementById(p).classList.add('hidden');
+<script>
+
+// ===================================
+// PAGE NAVIGATION
+// ===================================
+
+function go(number){
+
+ document.querySelectorAll('.page').forEach(p=>{
+  p.classList.remove('active');
  });
- const page=document.getElementById(id);
- page.classList.remove('hidden');
- page.classList.add('fade');
+
+ document.getElementById('p'+number).classList.add('active');
+
  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-const memories=[
- "There was a moment I wished would never end...",
- "I had a thousand dreams hidden behind one smile.",
- "Some conversations became my favourite memories.",
- "I never knew a date could carry so many feelings.",
- "And suddenly, everything became a memory.",
- "Maybe forever was never promised. But the feelings were real."
+
+// ===================================
+// FOUR MEMORY VAULT
+// ===================================
+
+const memories = [
+
+ "It started with a simple hello. Who knew a little beginning could mean so much?",
+
+ "Some ordinary moments became extraordinary just because Riya was there.",
+
+ "There were words I wanted to say, but sometimes silence spoke louder.",
+
+ "Not every story gets the ending we imagined. Some are simply kept in the heart."
+
 ];
 
-let index=0;
+function reveal(index){
 
-function nextStory(){
- const text=document.getElementById('storyText');
- index++;
- if(index>=memories.length){
-  show('letter');
+ const result=document.getElementById('memoryResult');
+
+ result.style.opacity=0;
+
+ setTimeout(()=>{
+  result.innerText=memories[index];
+  result.style.opacity=1;
+ },250);
+}
+
+
+// ===================================
+// SEALED LETTER
+// ===================================
+
+function unlockLetter(){
+
+ document.getElementById('letterContent')
+ .classList.add('open');
+
+ document.getElementById('openLetter')
+ .style.display='none';
+}
+
+
+// ===================================
+// PERSONAL MEMORY SAVE
+// ===================================
+
+function saveMemory(){
+
+ const text=document.getElementById('myMemory').value.trim();
+
+ const status=document.getElementById('saveStatus');
+
+ if(!text){
+  status.innerText="WRITE SOMETHING FIRST...";
   return;
  }
- text.classList.remove('fade');
- void text.offsetWidth;
- text.innerText=memories[index];
- text.classList.add('fade');
+
+ try{
+
+  localStorage.setItem('riyaTimeCapsule',text);
+
+  status.innerText="YOUR MEMORY HAS BEEN SAVED ♡";
+
+ }catch(e){
+
+  status.innerText="STORAGE UNAVAILABLE ON THIS BROWSER.";
+
+ }
+
 }
+
+
+function loadMemory(){
+
+ const status=document.getElementById('saveStatus');
+
+ try{
+
+  const saved=localStorage.getItem('riyaTimeCapsule');
+
+  if(saved){
+
+   document.getElementById('myMemory').value=saved;
+
+   status.innerText="YOUR SAVED MEMORY IS HERE.";
+
+  }else{
+
+   status.innerText="NO SAVED MEMORY FOUND.";
+
+  }
+
+ }catch(e){
+
+  status.innerText="STORAGE UNAVAILABLE.";
+
+ }
+
+}
+
+
+// ===================================
+// GOLDEN FLOATING PARTICLES
+// ===================================
+
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+
+let particles=[];
+
+function resize(){
+
+ canvas.width=window.innerWidth;
+ canvas.height=window.innerHeight;
+
+}
+
+window.addEventListener('resize',resize);
+resize();
+
+for(let i=0;i<55;i++){
+
+ particles.push({
+
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*1.5+.3,
+  speed:Math.random()*.35+.08,
+  alpha:Math.random()*.5+.1
+
+ });
+
+}
+
+function animate(){
+
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ particles.forEach(p=>{
+
+  p.y-=p.speed;
+
+  if(p.y<0){
+
+   p.y=canvas.height;
+   p.x=Math.random()*canvas.width;
+
+  }
+
+  ctx.beginPath();
+
+  ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+  ctx.fillStyle=`rgba(201,166,107,${p.alpha})`;
+
+  ctx.fill();
+
+ });
+
+ requestAnimationFrame(animate);
+
+}
+
+animate();
+
 </script>
+
 </body>
 </html>
